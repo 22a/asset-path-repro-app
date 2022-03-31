@@ -2,9 +2,20 @@
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
+const environment = EmberApp.env();
+
+const PUBLIC_ASSET_URL = {
+  development: '/assets/',
+  test: '/assets/',
+  production: 'https://static.my-cdn.com/ember/',
+};
+
 module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
     // Add options here
+    autoImport: {
+      publicAssetURL: PUBLIC_ASSET_URL[environment],
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -28,8 +39,9 @@ module.exports = function (defaults) {
     // staticModifiers: true,
     // staticComponents: true,
     // splitAtRoutes: ['route.name'], // can also be a RegExp
-    // packagerOptions: {
-    //    webpackConfig: { }
-    // }
+    packagerOptions: {
+      publicAssetURL: PUBLIC_ASSET_URL[environment],
+      //  webpackConfig: { }
+    }
   });
 };
