@@ -41,6 +41,7 @@ module.exports = function (defaults) {
     // splitAtRoutes: ['route.name'], // can also be a RegExp
     packagerOptions: {
       publicAssetURL: PUBLIC_ASSET_URL[environment],
+      usesCorrectAssetURL: true,
       //  webpackConfig: { }
     }
   });
